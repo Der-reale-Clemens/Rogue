@@ -17,8 +17,6 @@ public class Bullet {
 	private float dx;
 	private float dy;
 	private boolean isAlive = true;
-	private boolean flipX;
-	private boolean flipY;
 	
 	
 	public Bullet(Character player) {
