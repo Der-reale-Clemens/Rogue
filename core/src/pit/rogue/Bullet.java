@@ -16,7 +16,7 @@ public class Bullet {
 	private Character player;
 	private float dx;
 	private float dy;
-	
+	private boolean isAlive = true;
 	
 	
 	public Bullet(Character player) {
@@ -29,9 +29,7 @@ public class Bullet {
 	}
 	
 	public void draw(final Rogue game) {
-		game.batch.begin();
 		game.batch.draw(sprite, x, y);
-		game.batch.end();
 	}
 	
 	public void update(float delta) {
@@ -41,5 +39,13 @@ public class Bullet {
 	
 	public Circle returnHitbox() {
 		return hitboxBullet;
+	}
+	
+	public boolean isAlive() {
+		return isAlive;
+	}
+	
+	public void dispose() {
+		sprite.dispose();
 	}
 }

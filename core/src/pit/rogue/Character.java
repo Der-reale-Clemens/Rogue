@@ -21,7 +21,6 @@ public class Character {
 	private float speed=25f;
 	private int dx = 1;
 	private int dy = 1;
-	private List<Bullet> bullets = new ArrayList<Bullet>();
 	private int lastDx;
 	private int lastDy;
 
@@ -31,8 +30,6 @@ public class Character {
 		hitbox = new Rectangle(this.x, this.y, TEX_SIZE, TEX_SIZE);
 		x=pX;
 		y=pY;
-		
-		
 	}
 	
 	public void update(float delta) {
@@ -40,22 +37,12 @@ public class Character {
 		attack();
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;	
-		if(bullets.isEmpty()==false) {
-			for(Bullet bullet : bullets) {
-			bullet.update(delta);
-			}
-		}
 	}
 	
 	public void draw(final Rogue game) {
 		game.batch.begin();
 		game.batch.draw(sprite, x, y);
 		game.batch.end();
-		if(bullets.isEmpty()==false) {
-			for(Bullet bullet : bullets) {
-			bullet.draw(game);
-			}
-		}
 	}
 	
 	public void movement(){
@@ -88,7 +75,7 @@ public class Character {
 	}
 	
 	public void attack() {
-		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) bullets.add(new Bullet(this));
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) BulletManager.addBullet(this);
 	}
 	
 	public float getX() {

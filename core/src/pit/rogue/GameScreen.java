@@ -17,6 +17,7 @@ public class GameScreen implements Screen {
 	private Room room = new Room(RoomTypes.DEBUGMAP);
 	private Character player= new Character(100,100);
 	private EnemyManager enemyManager = new EnemyManager();
+	private BulletManager bulletManager = new BulletManager();
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -50,12 +51,14 @@ public class GameScreen implements Screen {
 
 	public void update(float delta ) {
 		enemyManager.update(delta, player.getX(), player.getY());
+		bulletManager.update(delta);
 		player.update(delta);
 		
 		
 		room.draw(game);
 		player.draw(game);
 		enemyManager.draw(game);
+		bulletManager.draw(game);
 	}
 	
 	@Override
