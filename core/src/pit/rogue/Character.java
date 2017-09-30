@@ -23,6 +23,7 @@ public class Character {
 	private int dy = 1;
 	private int lastDx;
 	private int lastDy;
+	private float health = 50;
 
 	private float cooldown = 300;
 	private float counter;
