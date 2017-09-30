@@ -55,7 +55,6 @@ public class GameScreen implements Screen {
 		bulletManager.update(delta);
 		player.update(delta);
 		
-		
 		map.draw(game);
 		player.draw(game);
 		enemyManager.draw(game);

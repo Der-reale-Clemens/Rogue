@@ -26,6 +26,13 @@ public class Character {
 	private int lastDx;
 	private int lastDy;
 	private float health = 50;
+	private int roomNr;
+	private Items bomb;
+	private Items key;
+	private Items coin;
+	private int amountOfBombs=0;
+	private int amountOfCoins=0;
+	private int amountOfKeys=0;
 
 	private float cooldown = 300;
 	private float cooldownCounter;
@@ -63,6 +70,10 @@ public class Character {
 			}
 		}
 		invincibiltyCounter += delta;
+		if(dx==1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac2.png"));
+		if(dx==-1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac4.png"));
+		if(dy==1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac1.png"));
+		if(dy==-1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac3.png"));
 	}
 	
 	public void draw(final Rogue game) {
@@ -149,5 +160,25 @@ public class Character {
 	
 	public Circle returnHitbox(){
 		return hitbox;
+	}
+	
+	public void collectBomb() {
+		if(getX()==bomb.getBombX() && getY()==bomb.getBombY())amountOfBombs++;
+	}
+	public int getAmountOfBombs() {
+		return amountOfBombs;
+	}
+	public void collectCoins() {
+		if(getX()==coin.getCoinX() && getY()==coin.getCoinY())amountOfCoins++;
+	}
+	public int getAmountOfCoins() {
+		return amountOfCoins;
+	}
+	
+	public void collectKey() {
+		if(getX()==key.getKeyX() && getY()==key.getKeyY())amountOfKeys++;
+	}
+	public int getAmountOfKeys() {
+		return amountOfKeys;
 	}
 }

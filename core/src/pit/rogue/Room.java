@@ -7,7 +7,7 @@ public class Room {
 	private int[] enemys;
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
-	private final int TEX_SIZE = Config.TEX_SIZE;
+	private final int TEX_SIZE = Config.TEX_SIZE;;
 	
 	private int warpTileX;
 	private int warpTileY;
@@ -27,6 +27,7 @@ public class Room {
 						break;
 					case 1:
 						room[i][j] = new Tile(TileTypes.GroundTile, i*TEX_SIZE, j*TEX_SIZE);
+
 						break;
 					case 2:
 						room[i][j] = new Tile(TileTypes.WarpTile, i*TEX_SIZE, j*TEX_SIZE);
