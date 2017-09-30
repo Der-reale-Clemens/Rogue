@@ -15,6 +15,7 @@ public class GameScreen implements Screen {
 	private BitmapFont font;
 	
 	private Room room = new Room(RoomTypes.DEBUGMAP);
+	private Character player= new Character();
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -41,11 +42,12 @@ public class GameScreen implements Screen {
 		// set batch coordinates based on camera Matrix
 		game.batch.setProjectionMatrix(camera.combined);
 		
-		update(delta);
+		update(delta*1000);
 	}
 
 	public void update(float delta ) {
 		room.draw(game);
+		player.draw(game);
 	}
 	
 	@Override
