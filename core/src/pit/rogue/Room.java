@@ -4,9 +4,9 @@ public class Room {
 	private Tile[][] room;
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
-	private final int TEX_SIZE = Config.TEX_SIZE;
+	private final int TEX_SIZE = Config.TEX_SIZE;;
 	
-	public Room(int[][] map) {
+	public Room(int[][] map, int roomNr) {
 		room = new Tile[WIDTH][HEIGHT];
 		for(int i = 0; i < WIDTH; i++) {
 			for(int j = 0; j < HEIGHT; j++) {
@@ -16,6 +16,8 @@ public class Room {
 						break;
 					case 1:
 						room[i][j] = new Tile(TileTypes.GroundTile, i*TEX_SIZE, j*TEX_SIZE);
+					case 2:
+						room[i][j] = new Tile(i*TEX_SIZE, j*TEX_SIZE, roomNr);
 				}
 			}
 		}

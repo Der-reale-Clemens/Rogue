@@ -24,6 +24,7 @@ public class Character {
 	private int lastDx;
 	private int lastDy;
 	private float health = 50;
+	private int roomNr;
 
 	private float cooldown = 300;
 	private float counter;

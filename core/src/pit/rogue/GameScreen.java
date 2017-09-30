@@ -14,7 +14,8 @@ public class GameScreen implements Screen {
 	OrthographicCamera camera;
 	private BitmapFont font;
 	
-	private Room room = new Room(RoomTypes.DEBUGMAP);
+	private Room room1 = new Room(RoomTypes.DEBUGMAP, 1);
+	private Room room2 = new Room(RoomTypes.NEXTLEVELMAP, 2);
 	private Character player= new Character(100,100);
 	private EnemyManager enemyManager = new EnemyManager();
 	private BulletManager bulletManager = new BulletManager();
@@ -55,7 +56,8 @@ public class GameScreen implements Screen {
 		player.update(delta);
 		
 		
-		room.draw(game);
+		room1.draw(game);
+		room2.draw(game);
 		player.draw(game);
 		enemyManager.draw(game);
 		bulletManager.draw(game);

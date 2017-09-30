@@ -8,12 +8,20 @@ public class Tile {
 	private Texture sprite;
 	private final int X;
 	private final int Y;
+	private int roomNr;
 	
 	public Tile(TileTypes type, int x, int y) {
 		this.X = x;
 		this.Y = y;
 		this.sprite = new Texture(Gdx.files.internal(type.textureName));
 		this.type = type;
+	}
+	
+	public Tile(int x, int y, int roomNr) {
+		this.X = x;
+		this.Y = y;
+		this.sprite = new Texture(Gdx.files.internal("WarpTile.png"));
+		this.setRoomNr(roomNr);
 	}
 	
 	public void dispose() {
@@ -31,4 +39,13 @@ public class Tile {
 	public Texture getTexture() {
 		return sprite;
 	}
+
+	public int getRoomNr() {
+		return roomNr;
+	}
+
+	public void setRoomNr(int roomNr) {
+		this.roomNr = roomNr;
+	}
 }
+

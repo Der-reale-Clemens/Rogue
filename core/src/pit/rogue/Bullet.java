@@ -11,7 +11,7 @@ public class Bullet {
 	
 	private Texture sprite;
 	private Circle hitboxBullet;
-	private final String bullet ="Bullet.png";
+	private final String bullet ="BulletNormal.png";
 	private float x;
 	private float y; 
 	private float speed=50f;
