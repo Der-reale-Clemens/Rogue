@@ -38,7 +38,6 @@ public class Bullet {
 	public void update(float delta) {
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;
-		
 	}
 	
 	public Circle returnHitbox() {
