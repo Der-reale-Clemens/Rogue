@@ -17,6 +17,8 @@ public class Bullet {
 	private float dx;
 	private float dy;
 	private boolean isAlive = true;
+	private boolean flipX;
+	private boolean flipY;
 	
 	
 	public Bullet(Character player) {
@@ -31,6 +33,7 @@ public class Bullet {
 	public void draw(final Rogue game) {
 		game.batch.draw(sprite, x, y);
 	}
+	
 	
 	public void update(float delta) {
 		x += speed*(delta/100)*dx;
