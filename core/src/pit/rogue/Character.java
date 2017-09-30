@@ -14,7 +14,7 @@ public class Character {
 	private Rectangle hitbox;
 	private float x = 100;
 	private float y = 100;
-	private float speed=10f;
+	private float speed=25f;
 	private int dx = 1;
 	private int dy = 1;
 
