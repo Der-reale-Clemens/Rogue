@@ -48,7 +48,7 @@ public class Character {
 	
 	public void draw(final Rogue game) {
 		game.batch.begin();
-		game.batch.draw(sprite, x, y);
+		game.batch.draw(sprite, x, y, TEX_SIZE, TEX_SIZE, 0, 0, TEX_SIZE, TEX_SIZE, false, true);
 		game.batch.end();
 	}
 	

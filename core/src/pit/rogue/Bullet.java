@@ -35,6 +35,7 @@ public class Bullet {
 		game.batch.draw(sprite, x, y);
 	}
 	
+	
 	public void update(float delta) {
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;

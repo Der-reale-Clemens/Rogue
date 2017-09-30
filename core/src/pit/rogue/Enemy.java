@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Enemy {
 	
-	private final float TEX_SIZE = Config.TEX_SIZE;
+	private final int TEX_SIZE = Config.TEX_SIZE;
 	
 	private EnemyTypes type;
 	private Circle hitbox;
@@ -92,7 +92,7 @@ public class Enemy {
 	}
 	
 	public void draw(final Rogue game) {
-		game.batch.draw(sprite, x, y);
+		game.batch.draw(sprite, x, y, TEX_SIZE, TEX_SIZE, 0, 0, TEX_SIZE, TEX_SIZE, false, true);
 	}
 	
 	public Circle getHitbox() {
