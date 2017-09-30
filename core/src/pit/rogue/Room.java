@@ -10,7 +10,7 @@ public class Room {
 	private List<Item> items = new LinkedList<Item>();
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
-	private final int TEX_SIZE = Config.TEX_SIZE;;
+	private final int TEX_SIZE = Config.TEX_SIZE;
 	
 	private int warpTileX;
 	private int warpTileY;
@@ -94,4 +94,6 @@ public class Room {
 	public int getWarpTileY() {
 		return warpTileY;
 	}
+	
+	
 }

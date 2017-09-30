@@ -28,6 +28,12 @@ public class Character {
 	private int amountOfBombs=0;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;
+	private Room room;
+	private Tile t1;
+	private Tile t2;
+	private Tile t3;
+	private Tile t4;
+	private TileTypes type;
 
 	private float cooldown = 300;
 	private float cooldownCounter;
@@ -43,7 +49,7 @@ public class Character {
 	}
 	
 	public void update(float delta, Room room) {
-		movement();
+		movement(room);	
 		warp();
 		if(cooldownCounter >= cooldown) {
 			cooldownCounter = 0;
@@ -77,7 +83,7 @@ public class Character {
 		game.batch.end();
 	}
 	
-	public void movement(){
+	public void movement(Room room){
 		dx=0;
 		dy=0;
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -104,6 +110,16 @@ public class Character {
 		if(x > 13 * TEX_SIZE) x = 13 * TEX_SIZE;
 		if(y < 1 * TEX_SIZE) y = 1 * TEX_SIZE;
 		if(y > 7 * TEX_SIZE) y = 7 * TEX_SIZE;
+		
+		Tile t1=room.getRoom()[(int) ((x+5)/TEX_SIZE)][(int) 0];
+		Tile t2=room.getRoom()[(int) ((x-5)/TEX_SIZE)][(int) 0];
+		Tile t3=room.getRoom()[(int) 0][(int) ((y+5)/TEX_SIZE)];
+		Tile t4=room.getRoom()[(int) 0][(int) ((y-5)/TEX_SIZE)];
+		
+		if(t1.getType()==TileTypes.RockTile)dx=0;
+		if(t2.getType()==TileTypes.RockTile)dx=0;
+		if(t3.getType()==TileTypes.RockTile)dy=0;
+		if(t4.getType()==TileTypes.RockTile)dy=0;
 	}
 	
 	public void attack() {
@@ -168,4 +184,6 @@ public class Character {
 	public int getAmountOfKeys() {
 		return amountOfKeys;
 	}
+	
+	
 }
