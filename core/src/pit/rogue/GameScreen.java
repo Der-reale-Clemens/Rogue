@@ -16,6 +16,7 @@ public class GameScreen implements Screen {
 	
 	private Room room = new Room(RoomTypes.DEBUGMAP);
 	private Character player= new Character();
+	private EnemyManager enemyManager = new EnemyManager();
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -24,6 +25,8 @@ public class GameScreen implements Screen {
 		// create the camera
 		camera = new OrthographicCamera();
 		camera.setToOrtho(true, WIDTH, HEIGHT);
+		
+		enemyManager.addEnemy();
 	}
 
 	@Override
@@ -46,8 +49,13 @@ public class GameScreen implements Screen {
 	}
 
 	public void update(float delta ) {
+		enemyManager.update(delta);
+		player.update(delta);
+		
+		
 		room.draw(game);
 		player.draw(game);
+		enemyManager.draw(game);
 	}
 	
 	@Override

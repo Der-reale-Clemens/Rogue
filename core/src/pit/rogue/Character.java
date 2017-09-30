@@ -10,11 +10,13 @@ public class Character {
 	private final int TEX_SIZE=Config.TEX_SIZE;
 	
 	private Texture sprite;
-	private final String tex = "";
+	private final String tex = "Charakter.png";
 	private Rectangle hitbox;
-	private float x;
-	private float y;
-	private float speed=1f;
+	private float x = 100;
+	private float y = 100;
+	private float speed=10f;
+	private int dx = 1;
+	private int dy = 1;
 
 	
 	public Character() {
@@ -23,7 +25,9 @@ public class Character {
 	}
 	
 	public void update(float delta) {
-		x += speed*(delta/100);
+		movement();
+		x += speed*(delta/100)*dx;
+		y += speed*(delta/100)*dy;
 	}
 	
 	public void draw(final Rogue game) {
@@ -33,14 +37,16 @@ public class Character {
 	}
 	
 	public void movement(){
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) hitbox.x -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) hitbox.x += 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.UP)) hitbox.y += 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) hitbox.y -= 200 * Gdx.graphics.getDeltaTime();
-		if(hitbox.x < 1 * TEX_SIZE) hitbox.x = 1 * TEX_SIZE;
-		if(hitbox.x > 14 * TEX_SIZE) hitbox.x = 14 * TEX_SIZE;
-		if(hitbox.y < 1 * TEX_SIZE) hitbox.y = 1 * TEX_SIZE;
-		if(hitbox.y > 7 * TEX_SIZE)hitbox.y = 7 * TEX_SIZE;
+		dx=0;
+		dy=0;
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) dx = -1;
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) dx = 1;
+		if(Gdx.input.isKeyPressed(Input.Keys.UP)) dy = -1;
+		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) dy = 1;
+		if(x < 1 * TEX_SIZE) x = 1 * TEX_SIZE;
+		if(x > 13 * TEX_SIZE) x = 13 * TEX_SIZE;
+		if(y < 1 * TEX_SIZE) y = 1 * TEX_SIZE;
+		if(y > 7 * TEX_SIZE) y = 7 * TEX_SIZE;
 	}
 	
 	public void attack() {
