@@ -1,5 +1,7 @@
 package pit.rogue;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -8,6 +10,7 @@ public class Enemy {
 	
 	private final float TEX_SIZE = Config.TEX_SIZE;
 	
+	private EnemyTypes type;
 	private Rectangle hitbox;
 	private String tex = "Charakter.png";
 	private float speed = 5f;
@@ -16,17 +19,46 @@ public class Enemy {
 	private float health = 10;
 	private Texture sprite;
 	private boolean isAlive = true;
+	private float dx;
+	private float dy;
+	private int counter;
 	
-	public Enemy(float x, float y) {
+	public Enemy(EnemyTypes type, float x, float y) {
 		this.x = x;
 		this.y = y;
-		sprite = new Texture(Gdx.files.internal(tex));
+		sprite = new Texture(Gdx.files.internal(type.textureName));
 		hitbox = new Rectangle(this.x, this.y, TEX_SIZE, TEX_SIZE);
+		this.health = type.health;
+		this.speed = type.speed;
+		this.type = type;
 	}
 	
-	public void update(float delta) {
-		x += speed * (delta/100);
+	public void update(float delta, float playerX, float playerY) {
+		if(health <= 0)
+			isAlive = false;
 		
+		//Main Update Code
+		
+		switch(type) {
+			case Enemy1: //Moves Randomly
+				if(counter == 10) {
+					switchDirection();
+					counter = 0;
+				}
+				counter++;
+				break;
+			case Enemy2: //Follows Player
+				float deltaX = playerX - x;
+				float deltaY = playerY - y;
+				float total = Math.abs(deltaX) + Math.abs(deltaY);
+				dx = deltaX/total;
+				dy = deltaY/total;
+				break;
+		}
+		x += speed * (delta/100)*dx;
+		y += speed * (delta/100)*dy;
+		
+		//Checks for Out of Bounds
 		if(x <= TEX_SIZE)
 			x = 65;
 		if(x >= 13*TEX_SIZE)
@@ -40,8 +72,24 @@ public class Enemy {
 		hitbox.setPosition(x, y);
 	}
 	
+	private void switchDirection() {
+		Random rng = new Random();
+		int r = rng.nextInt(3);
+		if(r == 2)
+			r = -1;
+		dx = r;
+		r = rng.nextInt(3);
+		if(r == 2)
+			r = -1;
+		dy = r;
+	}
+	
 	public void draw(final Rogue game) {
 		game.batch.draw(sprite, x, y);
+	}
+	
+	public Rectangle getHitbox() {
+		return hitbox;
 	}
 	
 	public boolean isAlive() {

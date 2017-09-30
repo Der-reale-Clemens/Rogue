@@ -26,7 +26,7 @@ public class GameScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(true, WIDTH, HEIGHT);
 		
-		enemyManager.addEnemy();
+		enemyManager.addEnemy(EnemyTypes.Enemy2, 65, 65);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class GameScreen implements Screen {
 	}
 
 	public void update(float delta ) {
-		enemyManager.update(delta);
+		enemyManager.update(delta, player.getX(), player.getY());
 		player.update(delta);
 		
 		

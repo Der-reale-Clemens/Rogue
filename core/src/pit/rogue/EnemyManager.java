@@ -7,11 +7,11 @@ import java.util.List;
 public class EnemyManager {
 	private static List<Enemy> enemys = new LinkedList<Enemy>();
 	
-	public void update(float delta) {
+	public void update(float delta, float playerX, float playerY) {
 		Iterator<Enemy> iter = enemys.iterator();
 		while(iter.hasNext()) {
 			Enemy enemy = iter.next();
-			enemy.update(delta);
+			enemy.update(delta, playerX, playerY);
 			if(!enemy.isAlive()) {
 				enemy.dispose();
 				iter.remove();
@@ -19,8 +19,12 @@ public class EnemyManager {
 		}
 	}
 	
-	public void addEnemy() {
-		enemys.add(new Enemy(64,64));
+	public void addEnemy(EnemyTypes type, float x, float y) {
+		enemys.add(new Enemy(type, x, y));
+	}
+	
+	public static List<Enemy> getEnemys() {
+		return enemys;
 	}
 	
 	public void draw(final Rogue game) {
