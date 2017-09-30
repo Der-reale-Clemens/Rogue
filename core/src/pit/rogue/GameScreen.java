@@ -15,7 +15,7 @@ public class GameScreen implements Screen {
 	private BitmapFont font;
 	
 	private Room room = new Room(RoomTypes.DEBUGMAP);
-	private Character player= new Character();
+	private Character player= new Character(100,100);
 	private EnemyManager enemyManager = new EnemyManager();
 
 	public GameScreen(final Rogue game) {
