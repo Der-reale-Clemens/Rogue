@@ -28,7 +28,21 @@ public class Character {
 	private int amountOfBombs=0;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;
+
 	private boolean isAlive = true;
+
+	private Room room;
+	private Tile t1;
+	private Tile t2;
+	private Tile t3;
+	private Tile t4;
+	private Tile t5;
+	private Tile t6;
+	private Tile t7;
+	private Tile t8;
+	private TileTypes type;
+	private boolean walkable;
+
 
 	private float cooldown = 300;
 	private float cooldownCounter;
@@ -52,7 +66,9 @@ public class Character {
 		} else {
 			cooldownCounter += delta;
 		}
-		
+
+		getWalkable(room);
+
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;
 		hitbox.setPosition(x, y);
@@ -105,6 +121,46 @@ public class Character {
 		game.batch.end();
 	}
 	
+	public void getWalkable(Room room) {
+		Tile t1=room.getRoom()[(int) ((x+69)/TEX_SIZE)][(int) y/TEX_SIZE];
+		Tile t2=room.getRoom()[(int) ((x-5)/TEX_SIZE)][(int) y/TEX_SIZE];
+		Tile t3=room.getRoom()[(int) x/TEX_SIZE][(int) ((y+69)/TEX_SIZE)];
+		Tile t4=room.getRoom()[(int) x/TEX_SIZE][(int) ((y-5)/TEX_SIZE)];
+		Tile t5=room.getRoom()[(int) (x+69)/TEX_SIZE][(int) ((y-5)/TEX_SIZE)];
+		Tile t6=room.getRoom()[(int) (x+69)/TEX_SIZE][(int) ((y+69)/TEX_SIZE)];
+		Tile t7=room.getRoom()[(int) (x-5)/TEX_SIZE][(int) ((y-5)/TEX_SIZE)];
+		Tile t8=room.getRoom()[(int) (x-5)/TEX_SIZE][(int) ((y+69)/TEX_SIZE)];
+		
+		if(t1.getType()==TileTypes.RockTile) {
+			dx = -1;
+		}
+		if(t2.getType()==TileTypes.RockTile) {
+			dx = 1;
+		}
+		if(t3.getType()==TileTypes.RockTile) {
+			dy = -1;
+		}
+		if(t4.getType()==TileTypes.RockTile) {
+			dy = 1;
+		}
+		if(t5.getType()==TileTypes.RockTile) {
+			dx = -1;
+			dy = 1;
+		}
+		if(t6.getType()==TileTypes.RockTile) {
+			dx = -1;
+			dy = -1;
+		}
+		if(t7.getType()==TileTypes.RockTile) {
+			dx = 1;
+			dy = 1;
+		}
+		if(t8.getType()==TileTypes.RockTile) {
+			dx = 1;
+			dy = -1;
+		}
+	}
+	
 	public void movement(){
 		dx=0;
 		dy=0;
@@ -132,6 +188,8 @@ public class Character {
 		if(x > 13 * TEX_SIZE) x = 13 * TEX_SIZE;
 		if(y < 1 * TEX_SIZE) y = 1 * TEX_SIZE;
 		if(y > 7 * TEX_SIZE) y = 7 * TEX_SIZE;
+		
+		
 	}
 	
 	public void attack() {
@@ -200,4 +258,6 @@ public class Character {
 	public int getAmountOfKeys() {
 		return amountOfKeys;
 	}
+	
+	
 }
