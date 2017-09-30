@@ -23,7 +23,10 @@ public class Character {
 	private int dy = 1;
 	private int lastDx;
 	private int lastDy;
+	private float health = 50;
 
+	private float cooldown = 300;
+	private float counter;
 	
 	public Character(float pX, float pY) {
 		this.sprite = new Texture(Gdx.files.internal(tex));
@@ -34,7 +37,12 @@ public class Character {
 	
 	public void update(float delta) {
 		movement();
-		attack();
+		if(counter >= cooldown) {
+			counter = 0;
+			attack();
+		} else {
+			counter += delta;
+		}
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;	
 	}

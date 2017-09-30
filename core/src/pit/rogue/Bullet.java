@@ -1,8 +1,10 @@
 package pit.rogue;
 
-import com.badlogic.gdx.math.Circle;
+import java.util.Iterator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
 
 public class Bullet {
 	private final int BULLET_SIZE=Config.BULLET_SIZE;
@@ -17,6 +19,7 @@ public class Bullet {
 	private float dx;
 	private float dy;
 	private boolean isAlive = true;
+	private float damage = 5f;
 	
 	
 	public Bullet(Character player) {
@@ -36,9 +39,23 @@ public class Bullet {
 	public void update(float delta) {
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;
+		
+		Iterator<Enemy> iter = EnemyManager.getEnemys().iterator();
+		while(iter.hasNext()) {
+			Enemy enemy = iter.next();
+			if(hitboxBullet.overlaps(enemy.getHitbox())) {
+				enemy.damage(damage);
+				isAlive = false;
+				return;
+			}
+		}
+		hitboxBullet.setPosition(x, y);
+		
+		if(x <= 64 || x >= 13*64 + 32|| y <= 64 || y >= 7*64 +32)
+			isAlive = false;
 	}
 	
-	public Circle returnHitbox() {
+	public Circle getHitbox() {
 		return hitboxBullet;
 	}
 	
