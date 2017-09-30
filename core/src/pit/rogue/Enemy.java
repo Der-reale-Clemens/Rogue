@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Enemy {
@@ -11,7 +12,7 @@ public class Enemy {
 	private final float TEX_SIZE = Config.TEX_SIZE;
 	
 	private EnemyTypes type;
-	private Rectangle hitbox;
+	private Circle hitbox;
 	private String tex = "Charakter.png";
 	private float speed = 5f;
 	private float x;
@@ -27,7 +28,7 @@ public class Enemy {
 		this.x = x;
 		this.y = y;
 		sprite = new Texture(Gdx.files.internal(type.textureName));
-		hitbox = new Rectangle(this.x, this.y, TEX_SIZE, TEX_SIZE);
+		hitbox = new Circle(this.x, this.y, TEX_SIZE/2);
 		this.health = type.health;
 		this.speed = type.speed;
 		this.type = type;
@@ -84,11 +85,17 @@ public class Enemy {
 		dy = r;
 	}
 	
+	public void damage(float damage) {
+		health -= damage;
+		if(health <= 0)
+			isAlive = false;
+	}
+	
 	public void draw(final Rogue game) {
 		game.batch.draw(sprite, x, y);
 	}
 	
-	public Rectangle getHitbox() {
+	public Circle getHitbox() {
 		return hitbox;
 	}
 	
