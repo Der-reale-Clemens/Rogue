@@ -14,7 +14,7 @@ public class Rogue extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont(true);
-		this.setScreen(new GameScreen(this));
+		this.setScreen(new TitleScreen(this));
 	}
 	
 	@Override

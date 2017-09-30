@@ -4,9 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Room {
 	private Tile[][] room;
 	private int[] enemys;
+	private Texture overlay;
 	private List<Item> items = new LinkedList<Item>();
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
@@ -16,7 +20,7 @@ public class Room {
 	private int warpTileY;
 	
 	public Room() {
-		
+		overlay = new Texture(Gdx.files.internal("RoomOverlay.png"));
 	}
 	
 	public void createRoom(int[][] map, int[] enemys) {
@@ -78,10 +82,24 @@ public class Room {
 		}
 		game.batch.end();
 		game.batch.enableBlending();
+		game.batch.begin();
+		for(Item item : items) {
+			item.draw(game);
+		}
+		game.batch.draw(overlay, 0, 0);
+		game.batch.end();
 	}
 	
 	public Tile[][] getRoom() {
 		return room;
+	}
+	
+	public void addItem(float x, float y, int type) {
+		items.add(new Item(x, y, type));
+	}
+	
+	public List<Item> getItems() {
+		return items;
 	}
 	
 	public int getWarpTileX() {

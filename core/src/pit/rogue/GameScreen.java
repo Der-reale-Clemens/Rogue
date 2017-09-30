@@ -15,7 +15,7 @@ public class GameScreen implements Screen {
 	private BitmapFont font;
 	
 	private Map map = new Map();
-	private Character player = new Character(100,100);
+	private Character player = new Character(WIDTH/2-32, HEIGHT/2-32);
 	private EnemyManager enemyManager = new EnemyManager();
 	private BulletManager bulletManager = new BulletManager();
 	private UI ui = new UI();
@@ -51,7 +51,7 @@ public class GameScreen implements Screen {
 	}
 
 	public void update(float delta ) {
-		enemyManager.update(delta, player.getX(), player.getY());
+		enemyManager.update(delta, player.getX(), player.getY(), Map.getRooms()[Map.getActiveRoom()]);
 		bulletManager.update(delta);
 		player.update(delta, Map.getRooms()[Map.getActiveRoom()]);
 		
@@ -60,6 +60,10 @@ public class GameScreen implements Screen {
 		enemyManager.draw(game);
 		bulletManager.draw(game);
 		ui.draw(game, player);
+		
+		if(!player.isAlive()) {
+			game.setScreen(new GameOverScreen(game));
+		}
 	}
 	
 	@Override

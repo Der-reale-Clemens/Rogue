@@ -15,7 +15,7 @@ public class Character {
 	private final int TEX_SIZE = Config.TEX_SIZE;
 	
 	private Texture sprite;
-	private final String tex = "Charakter.png";
+	private final String tex = "Issac1.png";
 	private Circle hitbox;
 	private float x;
 	private float y;
@@ -28,6 +28,7 @@ public class Character {
 	private int amountOfBombs=0;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;
+	private boolean isAlive = true;
 
 	private float cooldown = 300;
 	private float cooldownCounter;
@@ -51,9 +52,11 @@ public class Character {
 		} else {
 			cooldownCounter += delta;
 		}
+		
 		x += speed*(delta/100)*dx;
 		y += speed*(delta/100)*dy;
 		hitbox.setPosition(x, y);
+		
 		if(invincibiltyCounter >= invincibilty) {
 			Iterator<Enemy> iter = EnemyManager.getEnemys().iterator();
 			while(iter.hasNext()) {
@@ -65,10 +68,35 @@ public class Character {
 			}
 		}
 		invincibiltyCounter += delta;
+		
+		Iterator<Item> iter = room.getItems().iterator();
+		while(iter.hasNext()) {
+			Item item = iter.next();
+			if(hitbox.overlaps(item.getHitbox())) {
+				switch(item.getType()) {
+					case 0:
+						amountOfCoins++;
+						break;
+					case 1:
+						amountOfKeys++;
+						break;
+					case 2: 
+						amountOfBombs++;
+						break;
+				}
+				item.dispose();
+				iter.remove();
+			}
+		}
+		
 		if(dx==1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac2.png"));
 		if(dx==-1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac4.png"));
 		if(dy==1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac1.png"));
 		if(dy==-1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac3.png"));
+		
+		if(health <= 0) {
+			isAlive = false;
+		}
 	}
 	
 	public void draw(final Rogue game) {
@@ -116,8 +144,8 @@ public class Character {
 			if(EnemyManager.getEnemys().size() == 0) {
 				float wtx = Map.getRooms()[Map.getActiveRoom()].getWarpTileX();
 				float wty = Map.getRooms()[Map.getActiveRoom()].getWarpTileY();
-				if(Math.abs((wtx - x)) <= 10) {
-					if(Math.abs(wty - y) <= 10) {
+				if(Math.abs((wtx - x)) <= 15) {
+					if(Math.abs(wty - y) <= 15) {
 						Map.moveToNextRoom(this);
 					}
 				}
@@ -163,6 +191,10 @@ public class Character {
 
 	public int getAmountOfCoins() {
 		return amountOfCoins;
+	}
+	
+	public boolean isAlive() {
+		return isAlive;
 	}
 	
 	public int getAmountOfKeys() {
