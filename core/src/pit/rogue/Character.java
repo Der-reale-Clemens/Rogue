@@ -63,6 +63,10 @@ public class Character {
 			}
 		}
 		invincibiltyCounter += delta;
+		if(dx==1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac2.png"));
+		if(dx==-1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac4.png"));
+		if(dy==1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac1.png"));
+		if(dy==-1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac3.png"));
 	}
 	
 	public void draw(final Rogue game) {
