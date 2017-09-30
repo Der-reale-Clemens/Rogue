@@ -11,7 +11,7 @@ public class Bullet {
 	
 	private Texture sprite;
 	private Circle hitboxBullet;
-	private final String bullet ="Bullet.png";
+	private final String bullet ="BulletNormal.png";
 	private float x;
 	private float y; 
 	private float speed=50f;
@@ -25,8 +25,8 @@ public class Bullet {
 	public Bullet(Character player) {
 		this.sprite= new Texture(Gdx.files.internal(bullet));
 		hitboxBullet= new Circle(this.x, this.y, BULLET_SIZE/2);
-		x=player.getX();
-		y=player.getY();
+		x=player.getX() + BULLET_SIZE/2;
+		y=player.getY() + BULLET_SIZE/2;
 		dx=player.getLastDX();
 		dy=player.getLastDY();
 	}

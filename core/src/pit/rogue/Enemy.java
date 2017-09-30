@@ -14,6 +14,7 @@ public class Enemy {
 	private EnemyTypes type;
 	private Circle hitbox;
 	private String tex = "Charakter.png";
+	private float damage = 5f;
 	private float speed = 5f;
 	private float x;
 	private float y;
@@ -101,6 +102,10 @@ public class Enemy {
 	
 	public boolean isAlive() {
 		return isAlive;
+	}
+	
+	public float getDamage() {
+		return damage;
 	}
 	
 	public void dispose() {

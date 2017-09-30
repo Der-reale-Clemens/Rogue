@@ -18,6 +18,7 @@ public class GameScreen implements Screen {
 	private Character player= new Character(100,100);
 	private EnemyManager enemyManager = new EnemyManager();
 	private BulletManager bulletManager = new BulletManager();
+	private UI ui = new UI();
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -59,6 +60,7 @@ public class GameScreen implements Screen {
 		player.draw(game);
 		enemyManager.draw(game);
 		bulletManager.draw(game);
+		ui.draw(game, player);
 	}
 	
 	@Override
