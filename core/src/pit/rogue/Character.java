@@ -1,21 +1,23 @@
 package pit.rogue;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Character {
 
 	private final int TEX_SIZE=Config.TEX_SIZE;
 	
-	
+	private int money;
 	private Texture sprite;
 	private final String tex = "Charakter.png";
-	private Rectangle hitbox;
+	private Circle hitbox;
 	private float x;
 	private float y;
 	private float speed=25f;
@@ -27,25 +29,40 @@ public class Character {
 	private int roomNr;
 
 	private float cooldown = 300;
-	private float counter;
+	private float cooldownCounter;
+	
+	private float invincibilty = 500;
+	private float invincibiltyCounter;
 	
 	public Character(float pX, float pY) {
 		this.sprite = new Texture(Gdx.files.internal(tex));
-		hitbox = new Rectangle(this.x, this.y, TEX_SIZE, TEX_SIZE);
+		hitbox = new Circle(this.x, this.y, TEX_SIZE/2);
 		x=pX;
 		y=pY;
 	}
 	
 	public void update(float delta) {
 		movement();
-		if(counter >= cooldown) {
-			counter = 0;
+		if(cooldownCounter >= cooldown) {
+			cooldownCounter = 0;
 			attack();
 		} else {
-			counter += delta;
+			cooldownCounter += delta;
 		}
 		x += speed*(delta/100)*dx;
-		y += speed*(delta/100)*dy;	
+		y += speed*(delta/100)*dy;
+		hitbox.setPosition(x, y);
+		if(invincibiltyCounter >= invincibilty) {
+			Iterator<Enemy> iter = EnemyManager.getEnemys().iterator();
+			while(iter.hasNext()) {
+				Enemy enemy = iter.next();
+				if(hitbox.overlaps(enemy.getHitbox())) {
+					health -= enemy.getDamage();
+					invincibiltyCounter = 0;
+				}
+			}
+		}
+		invincibiltyCounter += delta;
 	}
 	
 	public void draw(final Rogue game) {
@@ -100,11 +117,15 @@ public class Character {
 		return lastDx;
 	}
 	
+	public float getHealth() {
+		return health;
+	}
+	
 	public float getLastDY() {
 		return lastDy;
 	}
 	
-	public Rectangle returnHitbox(){
+	public Circle returnHitbox(){
 		return hitbox;
 	}
 }
