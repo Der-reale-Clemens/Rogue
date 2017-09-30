@@ -4,7 +4,8 @@ public enum TileTypes {
 	WallTile(false, "Wall.png"),
 	GroundTile(true, "Ground2.png"),
 	WarpTile(true, "WarpTile.png"),
-	WarpTileOff(true, "WarpTileOff.png");
+	WarpTileOff(true, "WarpTileOff.png"),
+	RockTile(false, "Rock.png");
 	
 	boolean walkable;
 	String textureName;

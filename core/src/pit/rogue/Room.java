@@ -37,6 +37,9 @@ public class Room {
 					case 3:
 						room[i][j] = new Tile(TileTypes.WarpTileOff, i*TEX_SIZE, j*TEX_SIZE);
 						break;
+					case 4:
+						room[i][j] = new Tile(TileTypes.RockTile, i*TEX_SIZE, j*TEX_SIZE);
+						break;
 				}
 			}
 		}

@@ -9,6 +9,7 @@ public class Stone {
 	private int stoneX;
 	private int stoneY;
 	
+	
 	public Stone(int x, int y) {
 		stoneX=x;
 		stoneY=y;
