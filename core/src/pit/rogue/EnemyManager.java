@@ -19,7 +19,7 @@ public class EnemyManager {
 		}
 	}
 	
-	public void addEnemy(EnemyTypes type, float x, float y) {
+	public static void addEnemy(EnemyTypes type, float x, float y) {
 		enemys.add(new Enemy(type, x, y));
 	}
 	

@@ -30,7 +30,7 @@ public class UI {
 		//first draw Red Part
 		game.batch.draw(healthBarRed, 16, 16);
 		//Second part draw green part
-		game.batch.draw(healthBarGreen, 18, 18, 128*(player.getHealth()/50), 28);
+		game.batch.draw(healthBarGreen, 18, 18, 128*(player.getHealth()/50) -4, 28);
 		game.batch.end();
 	}
 }
