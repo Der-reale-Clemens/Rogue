@@ -2,7 +2,6 @@ package pit.rogue;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Bullet {

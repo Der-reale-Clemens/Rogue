@@ -39,9 +39,7 @@ public class Character {
 		movement();
 		attack();
 		x += speed*(delta/100)*dx;
-		y += speed*(delta/100)*dy;
-		lastDx=dx;
-		lastDy=dy;
+		y += speed*(delta/100)*dy;	
 		if(bullets.isEmpty()==false) {
 			for(Bullet bullet : bullets) {
 			bullet.update(delta);
@@ -63,10 +61,26 @@ public class Character {
 	public void movement(){
 		dx=0;
 		dy=0;
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) dx = -1;
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) dx = 1;
-		if(Gdx.input.isKeyPressed(Input.Keys.UP)) dy = -1;
-		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) dy = 1;
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			dx = -1;
+			lastDx = -1;
+			lastDy = 0;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			dx = 1;
+			lastDx = 1;
+			lastDy = 0;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			dy = -1;
+			lastDy = -1;
+			lastDx = 0;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			dy = 1;
+			lastDy = 1;
+			lastDx = 0;
+		}
 		if(x < 1 * TEX_SIZE) x = 1 * TEX_SIZE;
 		if(x > 13 * TEX_SIZE) x = 13 * TEX_SIZE;
 		if(y < 1 * TEX_SIZE) y = 1 * TEX_SIZE;
