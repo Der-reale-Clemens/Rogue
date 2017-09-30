@@ -17,6 +17,7 @@ public class Character {
 	private float speed=25f;
 	private int dx = 1;
 	private int dy = 1;
+	private final String bullet ="Bullet.png";
 
 	
 	public Character() {
@@ -50,7 +51,14 @@ public class Character {
 	}
 	
 	public void attack() {
-		
-		
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) ;
+	}
+	
+	public float getX() {
+		return x;
+	}
+	
+	public float getY() {
+		return y;
 	}
 }
