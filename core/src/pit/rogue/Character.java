@@ -14,7 +14,6 @@ public class Character {
 
 	private final int TEX_SIZE = Config.TEX_SIZE;
 	
-	private int money;
 	private Texture sprite;
 	private final String tex = "Charakter.png";
 	private Circle hitbox;
@@ -26,10 +25,6 @@ public class Character {
 	private int lastDx;
 	private int lastDy;
 	private float health = 50;
-	private int roomNr;
-	private Items bomb;
-	private Items key;
-	private Items coin;
 	private int amountOfBombs=0;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;
@@ -47,7 +42,7 @@ public class Character {
 		y=pY;
 	}
 	
-	public void update(float delta) {
+	public void update(float delta, Room room) {
 		movement();
 		warp();
 		if(cooldownCounter >= cooldown) {
@@ -162,22 +157,14 @@ public class Character {
 		return hitbox;
 	}
 	
-	public void collectBomb() {
-		if(getX()==bomb.getBombX() && getY()==bomb.getBombY())amountOfBombs++;
-	}
 	public int getAmountOfBombs() {
 		return amountOfBombs;
 	}
-	public void collectCoins() {
-		if(getX()==coin.getCoinX() && getY()==coin.getCoinY())amountOfCoins++;
-	}
+
 	public int getAmountOfCoins() {
 		return amountOfCoins;
 	}
 	
-	public void collectKey() {
-		if(getX()==key.getKeyX() && getY()==key.getKeyY())amountOfKeys++;
-	}
 	public int getAmountOfKeys() {
 		return amountOfKeys;
 	}

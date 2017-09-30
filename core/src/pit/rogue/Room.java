@@ -1,10 +1,13 @@
 package pit.rogue;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Room {
 	private Tile[][] room;
 	private int[] enemys;
+	private List<Item> items = new LinkedList<Item>();
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
 	private final int TEX_SIZE = Config.TEX_SIZE;;
@@ -78,6 +81,10 @@ public class Room {
 		}
 		game.batch.end();
 		game.batch.enableBlending();
+	}
+	
+	public Tile[][] getRoom() {
+		return room;
 	}
 	
 	public int getWarpTileX() {
