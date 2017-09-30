@@ -14,5 +14,4 @@ public enum TileTypes {
 		this.walkable = walkable;
 		this.textureName = textureName;
 	}
-	
 }
