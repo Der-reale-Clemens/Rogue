@@ -1,6 +1,7 @@
 package pit.rogue;
 
 public enum TileTypes {
+	WallTile(false, "Wall.png"),
 	GroundTile(true, "Ground.png");
 	
 	

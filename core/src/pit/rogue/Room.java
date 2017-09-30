@@ -6,14 +6,21 @@ public class Room {
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
 	private final int TEX_SIZE = Config.TEX_SIZE;
 	
-	public Room() {
+	public Room(int[][] map) {
 		room = new Tile[WIDTH][HEIGHT];
 		for(int i = 0; i < WIDTH; i++) {
 			for(int j = 0; j < HEIGHT; j++) {
-				room[i][j] = new Tile(TileTypes.GroundTile, i*TEX_SIZE, j*TEX_SIZE);
+				switch(map[j][i]) {
+					case 0:
+						room[i][j] = new Tile(TileTypes.WallTile, i*TEX_SIZE, j*TEX_SIZE);
+						break;
+					case 1:
+						room[i][j] = new Tile(TileTypes.GroundTile, i*TEX_SIZE, j*TEX_SIZE);
+				}
 			}
 		}
 	}
+	
 	
 	public void draw(final Rogue game) {
 		game.batch.disableBlending();

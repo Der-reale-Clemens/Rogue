@@ -14,7 +14,7 @@ public class GameScreen implements Screen {
 	OrthographicCamera camera;
 	private BitmapFont font;
 	
-	private Room room = new Room();
+	private Room room = new Room(RoomTypes.DEBUGMAP);
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -41,9 +41,13 @@ public class GameScreen implements Screen {
 		// set batch coordinates based on camera Matrix
 		game.batch.setProjectionMatrix(camera.combined);
 		
-		room.draw(game);
+		update(delta);
 	}
 
+	public void update(float delta ) {
+		room.draw(game);
+	}
+	
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
