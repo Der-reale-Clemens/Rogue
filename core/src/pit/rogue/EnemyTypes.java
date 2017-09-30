@@ -1,7 +1,7 @@
 package pit.rogue;
 
 public enum EnemyTypes {
-	Enemy1(15f, 10f, 2f, "Enemy1.png"),
+	Enemy1(15f, 10f, 2f, "Bat.png"),
 	Enemy2(10f, 10f, 1f, "Enemy2.png");
 	
 	float speed;

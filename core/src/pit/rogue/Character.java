@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Character {
 
-	private final int TEX_SIZE=Config.TEX_SIZE;
+	private final int TEX_SIZE = Config.TEX_SIZE;
 	
 	private int money;
 	private Texture sprite;
@@ -49,6 +49,7 @@ public class Character {
 	
 	public void update(float delta) {
 		movement();
+		warp();
 		if(cooldownCounter >= cooldown) {
 			cooldownCounter = 0;
 			attack();
@@ -115,12 +116,34 @@ public class Character {
 			BulletManager.addBullet(this);
 	}
 	
+	public void warp() {
+		if(Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+			if(EnemyManager.getEnemys().size() == 0) {
+				float wtx = Map.getRooms()[Map.getActiveRoom()].getWarpTileX();
+				float wty = Map.getRooms()[Map.getActiveRoom()].getWarpTileY();
+				if(Math.abs((wtx - x)) <= 10) {
+					if(Math.abs(wty - y) <= 10) {
+						Map.moveToNextRoom(this);
+					}
+				}
+			}
+		}
+	}
+	
 	public float getX() {
 		return x;
 	}
 	
 	public float getY() {
 		return y;
+	}
+	
+	public void setX(float x) {
+		this.x = x;
+	}
+	
+	public void setY(float y) {
+		this.y = y;
 	}
 	
 	public float getLastDX() {
