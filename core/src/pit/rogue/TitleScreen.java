@@ -4,10 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class TitleScreen implements Screen{
 	final Rogue game;
+	private Texture sprite;
+	private final String titleScreen = "Titel Screen3.png";
 	
 	OrthographicCamera camera;
 	private BitmapFont font;
@@ -20,6 +23,8 @@ public class TitleScreen implements Screen{
 		
 		font = new BitmapFont();
 		//background = new Texture(Gdx.files.internal("TitleScreen.png"));
+		
+		this.sprite = new Texture(Gdx.files.internal(titleScreen));
 	}
 	
 	@Override
@@ -30,8 +35,9 @@ public class TitleScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		game.batch.begin();
+		game.batch.draw(sprite, -125, -150);
+		game.batch.end();
 		
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);

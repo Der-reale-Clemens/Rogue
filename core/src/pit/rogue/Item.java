@@ -40,7 +40,6 @@ public class Item {
 			break;
 		case 1:
 			game.batch.draw(sprite, x, y, Config.TEX_SIZE/2 + 16, Config.TEX_SIZE/2 + 16, 0, 0, Config.TEX_SIZE, Config.TEX_SIZE, false, true);
-
 		}
 	}
 	
