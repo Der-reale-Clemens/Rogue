@@ -1,5 +1,6 @@
 package pit.rogue;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -94,6 +95,15 @@ public class Room {
 		for(Item item : items) {
 			item.draw(game);
 		}
+		Iterator<Bomb> iter = bombs.iterator();
+		while(iter.hasNext()) {
+			Bomb bomb = iter.next();
+			bomb.update();
+			bomb.draw(game);
+			if(!bomb.isAlive()) {
+				iter.remove();
+			}
+		}
 		game.batch.draw(overlay, 0, 0);
 		game.batch.end();
 	}
@@ -106,8 +116,8 @@ public class Room {
 		items.add(new Item(x, y, type));
 	}
 	
-	public void addBomb(float x, float y, int type) {
-		bombs.add(new Bomb(x, y, type));
+	public void addBomb(float x, float y) {
+		bombs.add(new Bomb(x, y));
 	}
 	
 	public List<Item> getItems() {

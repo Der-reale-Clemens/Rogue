@@ -10,7 +10,7 @@ public class Item {
 	private int type;
 	private final String coin = "Coin.png";
 	private final String bomb = "bomb.png";
-	private final String key = "Key.png";
+	private final String key = "Key2.png";
 	private Circle hitbox;
 	private float x;
 	private float y;
@@ -39,7 +39,7 @@ public class Item {
 			game.batch.draw(sprite, x, y, Config.TEX_SIZE/2, Config.TEX_SIZE/2, 0, 0, Config.TEX_SIZE, Config.TEX_SIZE, false, true);
 			break;
 		case 1:
-			game.batch.draw(sprite, x, y, Config.TEX_SIZE/2 + 16, Config.TEX_SIZE/2 + 16, 0, 0, Config.TEX_SIZE, Config.TEX_SIZE, false, true);
+			game.batch.draw(sprite, x - 8, y - 8, Config.TEX_SIZE/2 + 16, Config.TEX_SIZE/2 +16, 0, 0, Config.TEX_SIZE, Config.TEX_SIZE, false, true);
 		}
 	}
 	
