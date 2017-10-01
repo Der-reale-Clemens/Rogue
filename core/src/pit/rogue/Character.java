@@ -23,7 +23,7 @@ public class Character {
 	private int lastDx;
 	private int lastDy;
 	private float health = 75;
-	private int amountOfBombs=0;
+	private int amountOfBombs=5;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;
 
@@ -123,6 +123,8 @@ public class Character {
 				iter.remove();
 			}
 		}
+		
+		bomb(room);
 		
 		if(dx==1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac2.png"));
 		if(dx==-1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac4.png"));
@@ -228,6 +230,17 @@ public class Character {
 						Map.moveToNextRoom(this);
 					}
 				}
+			}
+		}
+	}
+	
+	public void bomb(Room room) {
+		//TODO
+		if(Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+			if(amountOfBombs >= 1) {
+				amountOfBombs--;
+				room.addBomb(x, y);
+				layBombSound.play();
 			}
 		}
 	}
