@@ -12,6 +12,7 @@ public class Room {
 	private int[] enemys;
 	private Texture overlay;
 	private List<Item> items = new LinkedList<Item>();
+	private List<Bomb> bombs = new LinkedList<Bomb>();
 	private final int WIDTH = Config.NUM_CELLS_WIDTH;
 	private final int HEIGHT = Config.NUM_CELLS_HEIGTH;
 	private final int TEX_SIZE = Config.TEX_SIZE;
@@ -103,6 +104,10 @@ public class Room {
 	
 	public void addItem(float x, float y, int type) {
 		items.add(new Item(x, y, type));
+	}
+	
+	public void addBomb(float x, float y, int type) {
+		bombs.add(new Bomb(x, y, type));
 	}
 	
 	public List<Item> getItems() {

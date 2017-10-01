@@ -232,6 +232,10 @@ public class Character {
 		}
 	}
 	
+	public void bomb() {
+		//TODO
+	}
+	
 	public float getX() {
 		return x;
 	}
