@@ -22,7 +22,7 @@ public class Character {
 	private float dy = 1;
 	private int lastDx;
 	private int lastDy;
-	private float health = 50;
+	private float health = 75;
 	private int amountOfBombs=0;
 	private int amountOfCoins=0;
 	private int amountOfKeys=0;

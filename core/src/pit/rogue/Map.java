@@ -6,13 +6,14 @@ public class Map {
 	private static int activeRoom;
 	
 	public Map() {
-		rooms = new Room[4];
-		for(int i = 0; i < 4; i++)
+		rooms = new Room[5];
+		for(int i = 0; i < 5; i++)
 			rooms[i] = new Room();
 		rooms[0].createRoom(RoomTypes.DEBUGMAP, RoomTypes.ENEMIES1);
 		rooms[1].createRoom(RoomTypes.DEBUGMAP2, RoomTypes.ENEMIES2);
 		rooms[2].createRoom(RoomTypes.DEBUGMAP3, RoomTypes.ENEMIES2);
 		rooms[3].createRoom(RoomTypes.DEBUGMAP4, RoomTypes.ENEMIES2);
+		rooms[4].createRoom(RoomTypes.DEBUGMAP5, RoomTypes.ENEMIES3);
 	}
 	
 	public void draw(final Rogue game) {

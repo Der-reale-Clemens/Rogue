@@ -79,6 +79,8 @@ public class Enemy {
 					frames[index++] = tmp[i][j];
 				}
 			}
+			this.health=50;
+			this.damage=10;
 			animation = new Animation<TextureRegion>(0.3f, frames);
 			stateTime = 0;
 		}
@@ -91,8 +93,11 @@ public class Enemy {
 			isAlive = false;
 		
 		//Main Update Code
-		
+		float deltaX;
+		float deltaY;
+		float total;
 		switch(type) {
+		
 			case Enemy1: //Moves Randomly
 				if(counter == 10) {
 					switchDirection();
@@ -101,12 +106,18 @@ public class Enemy {
 				counter++;
 				break;
 			case Enemy2: //Follows Player
-				float deltaX = playerX - x;
-				float deltaY = playerY - y;
-				float total = Math.abs(deltaX) + Math.abs(deltaY);
+				deltaX = playerX - x;
+				deltaY = playerY - y;
+				total = Math.abs(deltaX) + Math.abs(deltaY);
 				dx = deltaX/total;
 				dy = deltaY/total;
 				break;
+			case Enemy3:
+				deltaX = playerX - x;
+				deltaY = playerY - y;
+				total = Math.abs(deltaX) + Math.abs(deltaY);
+				dx = deltaX/total;
+				dy = deltaY/total;
 		}
 		x += speed * (delta/100)*dx;
 		y += speed * (delta/100)*dy;

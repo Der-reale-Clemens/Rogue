@@ -69,6 +69,8 @@ public class Room {
 					case 1:
 						EnemyManager.addEnemy(EnemyTypes.Enemy2, x, y);
 						break;
+					case 2:
+						EnemyManager.addEnemy(EnemyTypes.Enemy3, x, y);
 				}
 				
 			}
