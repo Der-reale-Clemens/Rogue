@@ -70,7 +70,6 @@ public class Bomb {
 	}
 	
 	public void update() {
-		System.out.println(counter);
 		if(counter >= fuseTime && !isExploding) {
 			isExploding = true;
 			counter = 0;

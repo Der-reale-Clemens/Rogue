@@ -174,7 +174,8 @@ public class Enemy {
 			case Enemy3:
 				//game.batch.draw(sprite, x, y, TEX_SIZE+8, TEX_SIZE+16, 0, 0, TEX_SIZE, TEX_SIZE, false, true);
 				currentFrame = animation.getKeyFrame(stateTime, true);
-				game.batch.draw(currentFrame, x, y, 32, 32, 64, 32, 1, 2, 180);
+				game.batch.draw(currentFrame, x - 64, y -64, TEX_SIZE, TEX_SIZE, 64, 64, 1, 1, 180);
+				//game.batch.dra
 				break;
 		}
 	}

@@ -11,9 +11,9 @@ public class Map {
 			rooms[i] = new Room();
 		rooms[0].createRoom(RoomTypes.DEBUGMAP, RoomTypes.ENEMIES1);
 		rooms[1].createRoom(RoomTypes.DEBUGMAP2, RoomTypes.ENEMIES2);
-		rooms[2].createRoom(RoomTypes.DEBUGMAP3, RoomTypes.ENEMIES2);
-		rooms[3].createRoom(RoomTypes.DEBUGMAP4, RoomTypes.ENEMIES2);
-		rooms[4].createRoom(RoomTypes.DEBUGMAP5, RoomTypes.ENEMIES3);
+		rooms[2].createRoom(RoomTypes.DEBUGMAP3, RoomTypes.ENEMIES3);
+		rooms[3].createRoom(RoomTypes.DEBUGMAP4, RoomTypes.ENEMIES4);
+		rooms[4].createRoom(RoomTypes.DEBUGMAP5, RoomTypes.ENEMIES5);
 	}
 	
 	public void draw(final Rogue game) {
