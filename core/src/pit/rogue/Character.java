@@ -20,8 +20,8 @@ public class Character {
 	private float x;
 	private float y;
 	private float speed=25f;
-	private int dx = 1;
-	private int dy = 1;
+	private float dx = 1;
+	private float dy = 1;
 	private int lastDx;
 	private int lastDy;
 	private float health = 50;
@@ -132,32 +132,32 @@ public class Character {
 		Tile t8=room.getRoom()[(int) (x-5)/TEX_SIZE][(int) ((y+69)/TEX_SIZE)];
 		
 		if(t1.getType()==TileTypes.RockTile) {
-			dx = -1;
+			dx = (float) -0.035;
 		}
 		if(t2.getType()==TileTypes.RockTile) {
-			dx = 1;
+			dx = (float) 0.035;
 		}
 		if(t3.getType()==TileTypes.RockTile) {
-			dy = -1;
+			dy = (float) -0.035;
 		}
 		if(t4.getType()==TileTypes.RockTile) {
-			dy = 1;
+			dy = (float) 0.035;
 		}
 		if(t5.getType()==TileTypes.RockTile) {
-			dx = -1;
-			dy = 1;
+			dx = (float) -0.035;
+			dy = (float) 0.035;
 		}
 		if(t6.getType()==TileTypes.RockTile) {
-			dx = -1;
-			dy = -1;
+			dx = (float) -0.035;
+			dy = (float) -0.035;
 		}
 		if(t7.getType()==TileTypes.RockTile) {
-			dx = 1;
-			dy = 1;
+			dx = (float) 0.035;
+			dy = (float) 0.035;
 		}
 		if(t8.getType()==TileTypes.RockTile) {
-			dx = 1;
-			dy = -1;
+			dx = (float) 0.035;
+			dy = (float) -0.035;
 		}
 	}
 	

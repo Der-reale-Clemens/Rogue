@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class GameOverScreen implements Screen {
@@ -11,9 +12,13 @@ public class GameOverScreen implements Screen {
 	
 	OrthographicCamera camera;
 	private BitmapFont font;
+	private Texture sprite;
+	private final String gameoverScreen = "Game over.jpg";
 	
 	public GameOverScreen(final Rogue game) {
 		this.game = game;
+		
+		this.sprite = new Texture(Gdx.files.internal(gameoverScreen));
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
@@ -43,7 +48,7 @@ public class GameOverScreen implements Screen {
 		
 		game.batch.enableBlending();*/
 		game.batch.begin();
-		font.draw(game.batch, "You Lost!!!", 100, 150);
+		game.batch.draw(sprite, -165, -75);
 		//font.draw(game.batch, "Tap Anywhere to begin", 100, 100);
 		game.batch.end();
 	
