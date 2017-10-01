@@ -125,11 +125,16 @@ public class Character {
 		}
 		
 		bomb(room);
+		heal();
 		
 		if(dx==1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac2.png"));
 		if(dx==-1&&dy==0)this.sprite = new Texture(Gdx.files.internal("Issac4.png"));
 		if(dy==1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac1.png"));
 		if(dy==-1&&dx==0)this.sprite = new Texture(Gdx.files.internal("Issac3.png"));
+		
+		if(health > 15) {
+			lowHPSound.stop();
+		}
 		
 		if(health <= 0) {
 			isAlive = false;
@@ -242,6 +247,12 @@ public class Character {
 				room.addBomb(x, y);
 				layBombSound.play();
 			}
+		}
+	}
+	
+	public void heal() {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.H)) {
+			health = 75;
 		}
 	}
 	

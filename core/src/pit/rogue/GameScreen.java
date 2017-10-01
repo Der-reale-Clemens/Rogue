@@ -22,6 +22,9 @@ public class GameScreen implements Screen {
 	private UI ui = new UI();
 	
 	private Music bgm;
+	private Music bgm2;
+	
+	private boolean swit = false;
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -37,6 +40,9 @@ public class GameScreen implements Screen {
 		
 		bgm.setLooping(true);
 		bgm.play();
+		
+		bgm2 = Gdx.audio.newMusic(Gdx.files.internal("sounds/Miniboss.ogg"));
+		bgm2.setLooping(true);
 	}
 
 	@Override
@@ -72,6 +78,12 @@ public class GameScreen implements Screen {
 		if(!player.isAlive()) {
 			game.setScreen(new GameOverScreen(game));
 		}
+		if(swit == false && Map.getActiveRoom() == 4) {
+			bgm.stop();
+			bgm2.play();
+			swit =true;
+		}
+		
 		if(map.getActiveRoom()==4) {
 			if(EnemyManager.getEnemys().size() == 0) {
 				game.setScreen(new VictoryScreen(game));
