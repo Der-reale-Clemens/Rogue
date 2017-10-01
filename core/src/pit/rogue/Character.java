@@ -1,14 +1,12 @@
 package pit.rogue;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 
 public class Character {
 
@@ -43,6 +41,13 @@ public class Character {
 	private TileTypes type;
 	private boolean walkable;
 
+	private Sound teleportSound;
+	private Sound hurtSound;
+	private Sound layBombSound;
+	private Sound lowHPSound;
+	private Sound deathSound;
+	private Sound keySound;
+	private Sound coinSound;
 
 	private float cooldown = 300;
 	private float cooldownCounter;
@@ -55,6 +60,13 @@ public class Character {
 		hitbox = new Circle(this.x, this.y, TEX_SIZE/2);
 		x=pX;
 		y=pY;
+		teleportSound = Gdx.audio.newSound(Gdx.files.internal("sounds/teleport.wav"));
+		hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/link hurt.wav"));
+		layBombSound = Gdx.audio.newSound(Gdx.files.internal("sounds/lay bomb.wav"));
+		lowHPSound = Gdx.audio.newSound(Gdx.files.internal("sounds/low hp.wav"));
+		deathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/link dies.wav"));
+		keySound = Gdx.audio.newSound(Gdx.files.internal("sounds/key 1.wav"));
+		coinSound = Gdx.audio.newSound(Gdx.files.internal("sounds/rupee.wav"));
 	}
 	
 	public void update(float delta, Room room) {
@@ -80,6 +92,11 @@ public class Character {
 				if(hitbox.overlaps(enemy.getHitbox())) {
 					health -= enemy.getDamage();
 					invincibiltyCounter = 0;
+					hurtSound.play();
+					if(health <= 15) {
+						lowHPSound.stop();
+						lowHPSound.loop();
+					}
 				}
 			}
 		}
@@ -91,9 +108,11 @@ public class Character {
 			if(hitbox.overlaps(item.getHitbox())) {
 				switch(item.getType()) {
 					case 0:
+						coinSound.play();
 						amountOfCoins++;
 						break;
 					case 1:
+						keySound.play();
 						amountOfKeys++;
 						break;
 					case 2: 
@@ -112,6 +131,7 @@ public class Character {
 		
 		if(health <= 0) {
 			isAlive = false;
+			deathSound.play();
 		}
 	}
 	
@@ -204,6 +224,7 @@ public class Character {
 				float wty = Map.getRooms()[Map.getActiveRoom()].getWarpTileY();
 				if(Math.abs((wtx - x)) <= 15) {
 					if(Math.abs(wty - y) <= 15) {
+						teleportSound.play();
 						Map.moveToNextRoom(this);
 					}
 				}

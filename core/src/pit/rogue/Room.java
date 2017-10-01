@@ -80,7 +80,11 @@ public class Room {
 		game.batch.begin();
 		for(int i = 0; i < HEIGHT; i++) {
 			for(int j = 0; j < WIDTH; j++) {
-				game.batch.draw(room[j][i].getTexture(), room[j][i].getX(), room[j][i].getY());
+				if(room[j][i].getType() == TileTypes.RockTile) {
+					game.batch.draw(room[j][i].getTexture(), room[j][i].getX(), room[j][i].getY(), TEX_SIZE, TEX_SIZE, 0, 0, TEX_SIZE, TEX_SIZE, false, true);
+				} else {
+					game.batch.draw(room[j][i].getTexture(), room[j][i].getX(), room[j][i].getY());
+				}
 			}
 		}
 		game.batch.end();

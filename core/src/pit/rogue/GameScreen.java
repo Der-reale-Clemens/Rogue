@@ -2,6 +2,7 @@ package pit.rogue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,6 +20,8 @@ public class GameScreen implements Screen {
 	private EnemyManager enemyManager = new EnemyManager();
 	private BulletManager bulletManager = new BulletManager();
 	private UI ui = new UI();
+	
+	private Music bgm;
 
 	public GameScreen(final Rogue game) {
 		this.game = game;
@@ -29,6 +32,11 @@ public class GameScreen implements Screen {
 		camera.setToOrtho(true, WIDTH, HEIGHT);
 		
 		EnemyManager.addEnemy(EnemyTypes.Enemy2, 65, 65);
+		
+		bgm = Gdx.audio.newMusic(Gdx.files.internal("sounds/Dungeon.ogg"));
+		
+		bgm.setLooping(true);
+		bgm.play();
 	}
 
 	@Override

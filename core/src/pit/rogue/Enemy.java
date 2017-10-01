@@ -3,10 +3,9 @@ package pit.rogue;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 
@@ -17,6 +16,9 @@ public class Enemy {
 	
 	private Animation<TextureRegion> animation;
 	private Texture sheet;
+	
+	private Sound hitSound;
+	
 	private float stateTime;
 	
 	private EnemyTypes type;
@@ -41,6 +43,9 @@ public class Enemy {
 		this.health = type.health;
 		this.speed = type.speed;
 		this.type = type;
+		
+		hitSound = Gdx.audio.newSound(Gdx.files.internal("sounds/enemy hit.wav"));
+		
 		
 		if(type == EnemyTypes.Enemy1) {
 			sheet = new Texture(Gdx.files.internal("bbat.png"));
@@ -133,6 +138,7 @@ public class Enemy {
 	}
 	
 	public void damage(float damage) {
+		hitSound.play();
 		health -= damage;
 		if(health <= 0)
 			isAlive = false;

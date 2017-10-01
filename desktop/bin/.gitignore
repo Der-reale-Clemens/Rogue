@@ -27,3 +27,11 @@
 /Ground.png
 /Bat.png.orig
 /Coin.png.orig
+/sounds/
+/bomb explode.wav
+/enemy dies.wav
+/enemy hit.wav
+/lay bomb.wav
+/link dies.wav
+/link hurt.wav
+/low hp.wav
