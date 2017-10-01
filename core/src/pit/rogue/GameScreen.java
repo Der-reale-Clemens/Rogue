@@ -72,6 +72,11 @@ public class GameScreen implements Screen {
 		if(!player.isAlive()) {
 			game.setScreen(new GameOverScreen(game));
 		}
+		if(map.getActiveRoom()==4) {
+			if(EnemyManager.getEnemys().size() == 0) {
+				game.setScreen(new VictoryScreen(game));
+			}
+		}
 	}
 	
 	@Override
